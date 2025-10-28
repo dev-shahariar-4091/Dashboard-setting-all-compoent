@@ -8,6 +8,9 @@ import {
   Tooltip,
   Legend,
 } from "recharts";
+import Topbar from "./Topbar";
+import VendorsTable from "./VendorTable";
+import UsersTable from "./UsersTable";
 
 export default function Dashboard() {
   const userData = [
@@ -40,7 +43,12 @@ export default function Dashboard() {
   ];
 
   return (
-    <div className="flex justify-between items-center gap-5 ">
+    <div>
+      {/* Top bar  */}
+      <Topbar/>
+
+      {/* Statistics  */}
+      <div className="flex justify-between items-center gap-5 ">
       <div className="h-[400px]  w-1/2 bg-black text-white p-6 rounded-xl">
         <h2 className="text-xl font-semibold mb-3 ">Income Statistics</h2>
         <LineChart
@@ -78,6 +86,13 @@ export default function Dashboard() {
           <Bar dataKey="users" fill="#8884d8" />
         </BarChart>
       </div>
+    </div>
+
+    {/* Tables  */}
+    <div className="grid grid-cols-2 gap-10">
+      <VendorsTable/>
+      <UsersTable/>
+    </div>
     </div>
   );
 }

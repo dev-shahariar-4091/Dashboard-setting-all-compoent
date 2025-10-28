@@ -15,6 +15,7 @@ const { Header, Sider, Content } = Layout;
 
 const MainLayout = () => {
   const location = useLocation();
+  console.log("Location: ",location)
 
   const menuItems = [
     { key: "/", icon: <DashboardOutlined />, label: "Dashboard" },
