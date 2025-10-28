@@ -6,6 +6,7 @@ import {
   BarChartOutlined,
   SettingOutlined,
   LogoutOutlined,
+  MailOutlined,
 } from "@ant-design/icons";
 import { Link, Outlet, useLocation } from "react-router-dom";
 import logo from "../assets/image/Frame 1.png";
@@ -15,15 +16,24 @@ const { Header, Sider, Content } = Layout;
 
 const MainLayout = () => {
   const location = useLocation();
-  console.log("Location: ",location)
+  console.log("Location: ", location)
 
   const menuItems = [
-    { key: "/", icon: <DashboardOutlined />, label: "Dashboard" },
-    { key: "/users", icon: <UserOutlined />, label: "Users" },
-    { key: "/wallet", icon: <WalletOutlined />, label: "Wallet" },
-    { key: "/income", icon: <BarChartOutlined />, label: "Income" },
-    { key: "/settings", icon: <SettingOutlined />, label: "Settings" },
-    { key: "/logout", icon: <LogoutOutlined />, label: "Log Out" },
+    { key: 1, path: "/", icon: <DashboardOutlined />, label: "Dashboard" },
+    { key: 2, path: "/users", icon: <UserOutlined />, label: "Users" },
+    // {
+    //   key: 'sub1',
+    //   label: 'Navigation One',
+    //   icon: <MailOutlined />,
+    //   children: [
+    //     { key: '5', label: 'Option 5' },
+    //     { key: '6', label: 'Option 6' },
+    //   ],
+    // },
+    { key: 3, path: "/wallet", icon: <WalletOutlined />, label: "Wallet" },
+    { key: 4, path: "/income", icon: <BarChartOutlined />, label: "Income" },
+    { key: 5, path: "/settings", icon: <SettingOutlined />, label: "Settings" },
+    { key: 6, path: "/logout", icon: <LogoutOutlined />, label: "Log Out" },
   ];
 
   return (
@@ -36,7 +46,7 @@ const MainLayout = () => {
             headerColor: "rgb(107,94,70)",
             headerBg: "rgb(107,94,70)",
             headerHeight: 96,
-            bodyBg:"#222222"
+            bodyBg: "#222222"
           },
           Menu: {
             itemBg: "#f5d9a6",
@@ -53,28 +63,40 @@ const MainLayout = () => {
           className=" min-h-screen fixed left-0 top-0 bottom-0 "
         >
           <div className="flex flex-col items-center py-6 ">
-            <img src={logo} alt="logo"/>
+            <img src={logo} alt="logo" />
           </div>
 
           <Menu
             mode="inline"
             selectedKeys={[location.pathname]}
-            className=" text-black font-medium mt-4"
+            defaultOpenKeys={["sub1"]}
+            className="text-black font-medium mt-4"
           >
-            {menuItems.map((item) => (
-              <Menu.Item key={item.key} icon={item.icon}>
-                <Link to={item.key}>{item.label}</Link>
-              </Menu.Item>
-            ))}
+            {menuItems.map((item) =>
+              item.children ? (
+                <Menu.SubMenu key={item.key} icon={item.icon} title={item.label}>
+                  {item.children.map((child) => (
+                    <Menu.Item key={child.key}>
+                      {child.path ? <Link to={child.path}>{child.label}</Link> : child.label}
+                    </Menu.Item>
+                  ))}
+                </Menu.SubMenu>
+              ) : (
+                <Menu.Item key={item.path} icon={item.icon}>
+                  <Link to={item.path}>{item.label}</Link>
+                </Menu.Item>
+              )
+            )}
           </Menu>
+
         </Sider>
 
         <Layout className="min-h-screen bg-neutral-800">
           <Header className="sticky top-0 z-50 flex justify-between items-center px-6 bg-[#6b5e46]   ">
             <h2 className="text-2xl font-semibold text-white">Dashboard</h2>
             <div className="flex items-center gap-4">
-              <MdOutlineNotificationsActive className=" h-8 w-8 bg-white p-1 rounded-md"/>
-              <FaRegUser className=" h-8 w-8 bg-white p-1 rounded-md"/>
+              <MdOutlineNotificationsActive className=" h-8 w-8 bg-white p-1 rounded-md" />
+              <FaRegUser className=" h-8 w-8 bg-white p-1 rounded-md" />
             </div>
           </Header>
 
