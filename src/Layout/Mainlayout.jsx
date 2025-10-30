@@ -16,24 +16,24 @@ const { Header, Sider, Content } = Layout;
 
 const MainLayout = () => {
   const location = useLocation();
-  console.log("Location: ", location)
+  console.log("Location: ", location);
 
   const menuItems = [
     { key: 1, path: "/", icon: <DashboardOutlined />, label: "Dashboard" },
     { key: 2, path: "/users", icon: <UserOutlined />, label: "Users" },
-    // {
-    //   key: 'sub1',
-    //   label: 'Navigation One',
-    //   icon: <MailOutlined />,
-    //   children: [
-    //     { key: '5', label: 'Option 5' },
-    //     { key: '6', label: 'Option 6' },
-    //   ],
-    // },
+    {
+      key: "sub1",
+      label: "Navigation One",
+      icon: <MailOutlined />,
+      children: [
+        { key: "5", path: "/option-1", label: "Option 5" },
+        { key: "6", path: "/option-2", label: "Option 6" },
+      ],
+    },
     { key: 3, path: "/wallet", icon: <WalletOutlined />, label: "Wallet" },
     { key: 4, path: "/income", icon: <BarChartOutlined />, label: "Income" },
     { key: 5, path: "/settings", icon: <SettingOutlined />, label: "Settings" },
-    { key: 6, path: "/logout", icon: <LogoutOutlined />, label: "Log Out" },
+    { key: 6, path: "/login", icon: <LogoutOutlined />, label: "Log Out" },
   ];
 
   return (
@@ -46,7 +46,7 @@ const MainLayout = () => {
             headerColor: "rgb(107,94,70)",
             headerBg: "rgb(107,94,70)",
             headerHeight: 96,
-            bodyBg: "#222222"
+            bodyBg: "#222222",
           },
           Menu: {
             itemBg: "#f5d9a6",
@@ -74,10 +74,18 @@ const MainLayout = () => {
           >
             {menuItems.map((item) =>
               item.children ? (
-                <Menu.SubMenu key={item.key} icon={item.icon} title={item.label}>
+                <Menu.SubMenu
+                  key={item.key}
+                  icon={item.icon}
+                  title={item.label}
+                >
                   {item.children.map((child) => (
                     <Menu.Item key={child.key}>
-                      {child.path ? <Link to={child.path}>{child.label}</Link> : child.label}
+                      {child.path ? (
+                        <Link to={child.path}>{child.label}</Link>
+                      ) : (
+                        child.label
+                      )}
                     </Menu.Item>
                   ))}
                 </Menu.SubMenu>
@@ -88,7 +96,6 @@ const MainLayout = () => {
               )
             )}
           </Menu>
-
         </Sider>
 
         <Layout className="min-h-screen bg-neutral-800">
