@@ -20,14 +20,14 @@ const MainLayout = () => {
 
   const menuItems = [
     { key: 1, path: "/", icon: <DashboardOutlined />, label: "Dashboard" },
-    { key: 2, path: "/users", icon: <UserOutlined />, label: "Users" },
+    // { key: 2, path: "/users", icon: <UserOutlined />, label: "Users" },
     {
       key: "sub1",
-      label: "Navigation One",
+      label: "Users",
       icon: <MailOutlined />,
       children: [
-        { key: "5", path: "/option-1", label: "Option 5" },
-        { key: "6", path: "/option-2", label: "Option 6" },
+        { key: "5", path: "/vendor", label: "Vendor" },
+        { key: "6", path: "/customer", label: "Customer" },
       ],
     },
     { key: 3, path: "/wallet", icon: <WalletOutlined />, label: "Wallet" },
