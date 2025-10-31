@@ -6,6 +6,8 @@ import WalletPage from "../components/pages/Wallet/Wallet";
 import Login from "../components/pages/Auth/Login";
 import EmailVerficiation from "../components/pages/Auth/EmailVerficiation";
 import OtpVerification from "../components/pages/Auth/OtpVerification";
+import Vendor from "../components/Vendor/Vendor";
+import Customer from "../components/Customer/Customer";
 
 export const router = createBrowserRouter([
   {
@@ -24,8 +26,18 @@ export const router = createBrowserRouter([
         path: "/wallet",
         element: <WalletPage />,
       },
+      {
+        path : "/vendor",
+        element :<Vendor/>
+      }
+      ,
+      {
+        path : "/customer",
+        element: <Customer/>
+      }
     ],
   },
+  // Child path has been finished line of 28
   {
     path: "/login",
     element: <Login />,

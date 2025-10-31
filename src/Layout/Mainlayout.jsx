@@ -24,6 +24,7 @@ const MainLayout = () => {
     {
       key: "sub1",
       label: "Users",
+      path:'/users',
       icon: <MailOutlined />,
       children: [
         { key: "5", path: "/vendor", label: "Vendor" },
