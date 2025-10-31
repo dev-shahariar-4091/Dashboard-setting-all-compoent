@@ -8,6 +8,7 @@ import EmailVerficiation from "../components/pages/Auth/EmailVerficiation";
 import OtpVerification from "../components/pages/Auth/OtpVerification";
 import Vendor from "../components/Vendor/Vendor";
 import Customer from "../components/Customer/Customer";
+import Income from "../components/Income/Income";
 
 export const router = createBrowserRouter([
   {
@@ -34,6 +35,10 @@ export const router = createBrowserRouter([
       {
         path : "/customer",
         element: <Customer/>
+      },
+      {
+        path: '/income',
+        element : <Income/>
       }
     ],
   },

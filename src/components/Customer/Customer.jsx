@@ -34,37 +34,40 @@ const Customer = () => {
   };
   const hasSelected = selectedRowKeys.length > 0;
   return (
-    <Flex gap="middle" vertical>
-      <Flex align="center"   gap="middle">
-        
-          <div className="flex bg-black justify-between px-10 py-7 rounded-xl">
-            <div className="text-2xl">
-              <h1 className="text-white">Total Vendors</h1>
-              <p className="text-[#FFE6B9]">50000</p>
+    <div className="mx-10 ">
+      <Flex className="gap-10" vertical>
+        <Flex align="center" gap="middle">
+          <div className="grid grid-cols-2 gap-5 w-2xl">
+            <div className="flex bg-black justify-between px-10 py-7 rounded-2xl">
+              <div className="text-xl">
+                <h1 className="text-white">Total Vendors</h1>
+                <p className="text-[#FFE6B9]">50000</p>
+              </div>
+              <span>
+                <RiCustomerService2Line className="text-6xl text-white" />
+              </span>
             </div>
-            <span>
-              <RiCustomerService2Line className="text-6xl text-white" />
-            </span>
+
+            <div className="flex bg-black justify-between px-10 py-7 rounded-2xl">
+              <div className="text-xl">
+                <h1 className="text-white">Total Customers</h1>
+                <p className="text-[#FFE6B9]">50000</p>
+              </div>
+              <span>
+                <FaRegUser className="text-6xl text-white" />
+              </span>
+            </div>
           </div>
 
-          <div className="flex bg-black justify-between px-10 py-7 rounded-xl">
-            <div className="text-2xl">
-              <h1 className="text-white">Total Customers</h1>
-              <p className="text-[#FFE6B9]">50000</p>
-            </div>
-            <span>
-              <FaRegUser className="text-6xl text-white" />
-            </span>
-          </div>
-        
-        {hasSelected ? `Selected ${selectedRowKeys.length} items` : null}
+          {hasSelected ? `Selected ${selectedRowKeys.length} items` : null}
+        </Flex>
+        <Table
+          rowSelection={rowSelection}
+          columns={columns}
+          dataSource={dataSource}
+        />
       </Flex>
-      <Table
-        rowSelection={rowSelection}
-        columns={columns}
-        dataSource={dataSource}
-      />
-    </Flex>
+    </div>
   );
 };
 export default Customer;
